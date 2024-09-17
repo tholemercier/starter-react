@@ -1,0 +1,5 @@
+{
+  "extends": "@thlem/ts-config/tsconfig.json",
+  "include": ["src/**/*.tsx", "src/**/*.ts", "vite.config.ts"],
+  "exclude": ["node_modules"]
+}
