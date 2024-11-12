@@ -5,7 +5,7 @@ export const App = () => {
 
   return (
     <div>
-      Current Breakpoints:
+      Current Breakpoint:
       {breakpoint}
     </div>
   )
