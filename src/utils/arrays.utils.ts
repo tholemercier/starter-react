@@ -1,9 +1,9 @@
 export function ensureArray<T>(x: T | T[]) {
-  return ([] as T[]).concat(x ?? [])
+  return ([] as T[]).concat(x ?? []);
 }
 
 export function nonNullFilter<T>(x: T | Falsy): x is T {
-  return !!x
+  return !!x;
 }
 
 /**
@@ -22,5 +22,5 @@ export function nonNullFilter<T>(x: T | Falsy): x is T {
  * @param tt An array of values to filter out of the initial array
  */
 export function excludeFilter<T, TT extends T>(tt: TT[]) {
-  return (t: T): t is Exclude<T, TT> => !tt.includes(t as TT)
+  return (t: T): t is Exclude<T, TT> => !tt.includes(t as TT);
 }

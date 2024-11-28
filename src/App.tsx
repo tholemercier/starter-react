@@ -1,12 +1,10 @@
-import { useBreakpointContext } from './contexts/BreakpointContext'
+import { useBreakpointContext } from "./contexts/BreakpointContext";
 
 export const App = () => {
-  const { breakpoint } = useBreakpointContext()
-
+  const { breakpoint } = useBreakpointContext();
   return (
     <div>
-      Current Breakpoint:
-      {breakpoint}
+      {`Current Breakpoint: ${breakpoint}`}
     </div>
-  )
-}
+  );
+};
