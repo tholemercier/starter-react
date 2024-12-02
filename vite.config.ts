@@ -9,8 +9,15 @@ const port = parseInt(process.env.VITE_PORT ?? "3000", 10);
 const host = process.env.VITE_HOST ?? "localhost";
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(() => ({
   plugins: [ react() ],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./tests/setupTests.ts",
+    include: [ "./tests/**/*.test.{ts,tsx}" ],
+    exclude: [ "**/node_modules/**", `**/${process.env.VITE_OUTPUT_DIR ?? "build"}/**` ],
+  },
   server: {
     port: port,
     host: host,
@@ -45,4 +52,4 @@ export default defineConfig({
     sourcemap: process.env.VITE_SOURCEMAP === "true",
     outDir: process.env.VITE_OUTPUT_DIR ?? "build",
   },
-});
+}));

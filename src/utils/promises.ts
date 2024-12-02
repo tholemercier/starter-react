@@ -1,7 +1,7 @@
-import { timeLikeToMs } from "./datatime.utils";
-import { logger } from "./logs.utils";
+import { timeLikeToMs } from "./datatime";
+import { logger } from "./logs";
 
-import type { TimeLike } from "./datatime.utils";
+import type { TimeLike } from "./datatime";
 
 type TryOptions = {
   times: number

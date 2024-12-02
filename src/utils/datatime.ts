@@ -1,4 +1,4 @@
-import { isTruthy } from "./types.utils";
+import { isTruthy } from "./types";
 
 export const timeSignatures = [ "ms", "s", "m", "h", "d", "w", "mo", "y" ] as const;
 export type TimeSignature = (typeof timeSignatures)[number];

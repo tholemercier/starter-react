@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-import { recordEntries } from "../utils/records.utils";
+import { recordEntries } from "../utils/records";
 
 import type { PropsWithChildren } from "react";
 
