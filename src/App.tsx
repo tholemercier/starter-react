@@ -4,7 +4,7 @@ export const App = () => {
   const { breakpoint } = useBreakpointContext();
   return (
     <div>
-      {`Current Breakpoint: ${breakpoint}`}
+      <div>{`Current Breakpoint: ${breakpoint}`}</div>
     </div>
   );
 };
