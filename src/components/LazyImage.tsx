@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
+import { ViewportVisible } from "./ViewportVisible";
 import { typedAsserted } from "../utils/types";
 
 type ExtProps = { src: string };
@@ -30,11 +31,20 @@ export const LazyImage = (props: ExtProps) => {
     };
   }, []);
 
+  const onViewportEnter = useCallback(() => {
+    if (ref.current && !ref.current?.src) {
+      ref.current.src = typedAsserted(ref.current.dataset["src"]) ;
+      ref.current.style.opacity = "1";
+    }
+  }, []);
+
   return (
-    <img
-      ref={ref}
-      data-src={props.src}
-      style={{ opacity: "0", transition: "opacity 1s linear " }}
-    />
+    <ViewportVisible onViewportEnter={onViewportEnter} observerOptions={observerOptions}>
+      <img
+        ref={ref}
+        data-src={props.src}
+        style={{ opacity: "0", transition: "opacity 1s linear " }}
+      />
+    </ViewportVisible>
   );
 };
