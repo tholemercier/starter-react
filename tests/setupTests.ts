@@ -1,5 +1,6 @@
+import { cleanup } from "@testing-library/react";
 import { afterEach, beforeAll, afterAll, test, expect } from "vitest";
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
 
 import { server } from "./mocks/server";
 
@@ -13,7 +14,10 @@ beforeAll(() => {
 });
 
 // Reset any runtime request handlers we may add during the tests
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  cleanup();
+  server.resetHandlers();
+});
 
 // Close the server after all tests
 afterAll(() => server.close());
