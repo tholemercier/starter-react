@@ -3,7 +3,7 @@ import { useSwipeable } from "react-swipeable";
 import type { PropsWithChildren } from "react";
 
 type ExtProps = PropsWithChildren<{
-  onSwipedLeft: () => void,
+  onSwipedLeft: () => void
   onSwipedRight: () => void
 }>;
 

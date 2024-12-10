@@ -5,6 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import eslintPluginImport from 'eslint-plugin-import'
 import stylisticJs from '@stylistic/eslint-plugin'
+import pluginQuery from '@tanstack/eslint-plugin-query'
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -13,7 +14,8 @@ export default tseslint.config(
       js.configs.recommended,
       ...tseslint.configs.recommended,
       eslintPluginImport.flatConfigs.recommended,
-      eslintPluginImport.flatConfigs.typescript
+      eslintPluginImport.flatConfigs.typescript,
+      ...pluginQuery.configs['flat/recommended'],
     ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {

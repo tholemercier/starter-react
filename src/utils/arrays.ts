@@ -24,3 +24,11 @@ export function excludeFalsy<T>(x: T | Falsy): x is T {
 export function excludeValues<T, TT extends T>(tt: TT[]) {
   return (t: T): t is Exclude<T, TT> => !tt.includes(t as TT);
 }
+
+export const arraysAreDifferent = <T>(a: T[] = [], b: T[] = []) => {
+  return (
+    a.length !== b.length || a.some((item, index) => !Object.is(item, b[index]))
+  );
+};
+
+export const arraysAreIdentical = <T>(a: T[] = [], b: T[] = []) => !arraysAreDifferent(a, b);

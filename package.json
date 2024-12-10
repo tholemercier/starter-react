@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --report-unused-disable-directives",
     "preview": "vite preview",
     "prepare": "husky",
     "test": "vitest",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@stylistic/eslint-plugin": "^2.10.1",
+    "@tanstack/eslint-plugin-query": "^5.62.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",

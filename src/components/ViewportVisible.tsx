@@ -1,4 +1,6 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, type PropsWithChildren } from "react";
+import { useEffect } from "react";
+
+import type { RefObject, PropsWithChildren } from "react";
 
 const isSupported = !(
   !("IntersectionObserver" in window) ||
@@ -28,14 +30,11 @@ const observerOptions: IntersectionObserverInit = {
 type ExtProps = PropsWithChildren<{
   onViewportEnter: () => void,
   onViewportLeave?: () => void,
-  observerOptions?: IntersectionObserverInit;
+  observerOptions?: IntersectionObserverInit,
+  ref?: RefObject<HTMLDivElement>
 }>;
 
-export const ViewportVisible = forwardRef((props: ExtProps, fwRef) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useImperativeHandle(fwRef, () => ref.current, []);
-
+export const ViewportVisible = (props: ExtProps) => {
   useEffect(() => {
     if (isSupported) {
       const observer = new IntersectionObserver((entries) => {
@@ -47,19 +46,19 @@ export const ViewportVisible = forwardRef((props: ExtProps, fwRef) => {
         }
       }, { ...observerOptions, ...props.observerOptions });
 
-      if (ref.current) {
-        observer.observe(ref.current);
+      if (props.ref?.current) {
+        observer.observe(props.ref?.current);
       }
 
       return () => {
-        if (isSupported && ref.current) {
-          observer.unobserve(ref.current);
+        if (isSupported && props.ref?.current) {
+          observer.unobserve(props.ref?.current);
         }
       };
     };
   }, []);
 
   return (
-    <div ref={ref}>{props.children}</div>
+    <div ref={props.ref}>{props.children}</div>
   );
-});
+};
