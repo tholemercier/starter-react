@@ -11,7 +11,6 @@ const WithProviders = (props: PropsWithChildren) => {
       {props.children}
     </QueryClientProvider>
   );
-
 };
 
 export const customRender = (

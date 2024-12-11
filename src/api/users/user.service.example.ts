@@ -12,7 +12,6 @@ const fetchUsers = async (): Promise<User[]> => {
   const result = await response.json();
 
   return result.users;
-
 };
 
 export const useUsers = () => {

@@ -39,7 +39,7 @@ export const ViewportVisible = (props: ExtProps) => {
     if (isSupported) {
       const observer = new IntersectionObserver((entries) => {
         const [ entry ] = entries;
-        if(entry.isIntersecting) {
+        if (entry.isIntersecting) {
           props.onViewportEnter();
         } else {
           props.onViewportLeave?.();

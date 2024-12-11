@@ -15,7 +15,7 @@ export default tseslint.config(
       ...tseslint.configs.recommended,
       eslintPluginImport.flatConfigs.recommended,
       eslintPluginImport.flatConfigs.typescript,
-      ...pluginQuery.configs['flat/recommended'],
+      ...pluginQuery.configs['flat/recommended']
     ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -23,9 +23,9 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {
-      'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      '@stylistic': stylisticJs
+      '@stylistic': stylisticJs,
+      'react-hooks': reactHooks
     },
     rules: {
       // Core Rules
@@ -89,6 +89,14 @@ export default tseslint.config(
       "@stylistic/linebreak-style": ["error", "unix"],
       "@stylistic/quotes": ["error", "double", { avoidEscape: true }],
       "@stylistic/semi": ["error", "always"],
+      "@stylistic/space-infix-ops": "error",
+      "@stylistic/function-call-spacing": ["error", "never"],
+      "@stylistic/keyword-spacing": ["error", { "after": true }],
+      "@stylistic/arrow-parens": ["error", "always"],
+      "@stylistic/curly-newline": ["error", "always"],
+      "@stylistic/template-curly-spacing": "error",
+      "@stylistic/padded-blocks": ["error", "never"],
+      "@stylistic/space-before-blocks": "error",
       "max-len": ["warn", 200],
       "max-classes-per-file": ["error", 4],
       "no-multiple-empty-lines": [
@@ -122,6 +130,7 @@ export default tseslint.config(
       "no-loop-func": "off",
 
       // React Rules
+      ...reactHooks.configs.recommended.rules,
       "@stylistic/jsx-max-props-per-line": ["error", { "maximum": { "single": 3, "multi": 1 } }],
       "@stylistic/jsx-indent": ["error", 2],
       "@stylistic/jsx-one-expression-per-line": ["error", { "allow": "non-jsx" }],

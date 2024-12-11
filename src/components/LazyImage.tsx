@@ -8,13 +8,12 @@ type ExtProps = { src: string };
 const observerOptions = { rootMargin: "400px" };
 
 export const LazyImage = (props: ExtProps) => {
-
   const ref = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const [ entry ] = entries;
-      if(entry.isIntersecting && ref.current && !ref.current?.src) {
+      if (entry.isIntersecting && ref.current && !ref.current?.src) {
         ref.current.src = typedAsserted(ref.current.dataset["src"]) ;
         ref.current.style.opacity = "1";
       }

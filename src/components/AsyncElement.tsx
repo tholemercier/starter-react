@@ -6,7 +6,6 @@ import type { PropsWithChildren, ReactNode } from "react";
 type ExtProps<T> = PropsWithChildren<{ data: T, fallback?: ReactNode }>;
 
 export const AsyncElement = <T extends UseQueryResult>(props: ExtProps<T>) => {
-
   if (props.data.isFetching) {
     return <Spinner width="12px" height="12px" />;
   }
@@ -16,5 +15,4 @@ export const AsyncElement = <T extends UseQueryResult>(props: ExtProps<T>) => {
   }
 
   return props.children;
-
 };
