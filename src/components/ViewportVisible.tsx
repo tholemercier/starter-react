@@ -9,7 +9,7 @@ const isSupported = !(
     !("isIntersecting" in window.IntersectionObserverEntry.prototype)
 );
 
-const observerOptions: IntersectionObserverInit = {
+const _observerOptions: IntersectionObserverInit = {
   /*
     * Negative margin from the bottom creates an invisible line
     * to detect intersections.
@@ -34,31 +34,32 @@ type ExtProps = PropsWithChildren<{
   ref?: RefObject<HTMLDivElement>
 }>;
 
-export const ViewportVisible = (props: ExtProps) => {
+export const ViewportVisible = ({ ref, children, onViewportEnter, observerOptions, onViewportLeave }: ExtProps) => {
   useEffect(() => {
+    const lRef = ref?.current;
     if (isSupported) {
       const observer = new IntersectionObserver((entries) => {
         const [ entry ] = entries;
         if (entry.isIntersecting) {
-          props.onViewportEnter();
+          onViewportEnter();
         } else {
-          props.onViewportLeave?.();
+          onViewportLeave?.();
         }
-      }, { ...observerOptions, ...props.observerOptions });
+      }, { ..._observerOptions, ...observerOptions });
 
-      if (props.ref?.current) {
-        observer.observe(props.ref?.current);
+      if (ref?.current) {
+        observer.observe(ref?.current);
       }
 
       return () => {
-        if (isSupported && props.ref?.current) {
-          observer.unobserve(props.ref?.current);
+        if (isSupported && lRef) {
+          observer.unobserve(lRef);
         }
       };
     };
-  }, []);
+  }, [ observerOptions, onViewportEnter, onViewportLeave, ref ]);
 
   return (
-    <div ref={props.ref}>{props.children}</div>
+    <div ref={ref}>{children}</div>
   );
 };

@@ -44,7 +44,7 @@ export const ButtonRipple = (props: ExtProps) => {
     timeout.current = setTimeout(() => {
       setRipples([]);
     }, 500);
-  }, []);
+  }, [ parentOnClick ]);
 
   return (
     <button
